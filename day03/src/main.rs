@@ -1,11 +1,41 @@
 use std::fs;
 
+use itertools::Itertools;
+
+fn priority(c: char) -> u32 {
+    if c.is_uppercase() {
+        return 27 + (c as u32 - 'A' as u32);
+    } else {
+        return 1 + (c as u32 - 'a' as u32)
+    }
+}
+
 fn part1(input: &str) {
-    println!("part1: {}", 0)
+    let mut total = 0;
+    for line in input.lines() {
+        let (bag1, bag2) = line.split_at(line.len()/2);
+        for c in bag1.chars() {
+            if bag2.contains(c) {
+                total = total + priority(c);
+                break;
+            }
+        }
+    }
+    println!("part1: {}", total)
 }
 
 fn part2(input: &str) {
-    println!("part2: {}", 0)
+    let mut total = 0;
+    for group in input.lines().chunks(3).into_iter() {
+        let group: Vec<&str> = group.collect();
+        for c in group[0].chars() {
+            if group[1].contains(c) && group[2].contains(c) {
+                total = total + priority(c);
+                break;
+            }
+        }
+    }
+    println!("part2: {}", total)
 }
 
 fn main() {
