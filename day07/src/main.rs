@@ -73,7 +73,7 @@ fn parse_input(input: &str) -> Rc<RefCell<Dir>> {
                             break;
                         }
                         let l = line_iter.next().unwrap();
-                        let (size, name) = l.split_once(' ').unwrap();
+                        let (size, _) = l.split_once(' ').unwrap();
                         if size != "dir" {
                             let size: u64 = size.parse().unwrap();
                             cur_dir.borrow_mut().add_file(size);
