@@ -1,4 +1,4 @@
-use std::{fs, collections::{HashSet, HashMap}};
+use std::{fs, collections::{HashMap}};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Tile {
